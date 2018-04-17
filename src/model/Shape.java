@@ -5,6 +5,8 @@
  */
 package model;
 
+import java.awt.Graphics;
+
 /**
  *
  * @author MaramH
@@ -18,7 +20,7 @@ public interface Shape {
     public java.awt.Color getColor();
     public void setFillColor(java.awt.Color color);
     public java.awt.Color getFillColor();
-    public void draw(Object canvas);
+    public void draw(Graphics canvas);
     public Object clone() throws CloneNotSupportedException;
     
 }

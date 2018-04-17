@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.awt.Graphics;
 import model.Shape;
 
 /**
@@ -13,7 +14,7 @@ import model.Shape;
  */
 public interface DrawingEngine {
  
-    public void draw(Object canvas);
+    public void draw(Graphics canvas);
     public void addShape(Shape shape);
     public void removeShape(Shape shape);
     public void updateShape(Shape oldShape, Shape newShape);

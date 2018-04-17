@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class Parser implements DrawingEngine {
     private ArrayList<Shape> sh = new ArrayList<Shape>();
     @Override
-    public void draw(Object canvas){
+    public void draw(Graphics canvas){
     
         for(Shape shape: sh){
            shape.draw(canvas);

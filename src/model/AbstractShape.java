@@ -53,6 +53,10 @@ public abstract class AbstractShape implements Shape {
      
     public java.util.Map<String, Double> getProperties(){return this.properties; }
     
-    public Object clone() throws CloneNotSupportedException{return null;}
+    public Object clone() throws CloneNotSupportedException
+    {
+        return null;
+    }
+   
     
     }

@@ -11,6 +11,16 @@ import view.Canvas;
  * @author harouni
  */
 public class Memento {
+    private Canvas can;
+
+    public Memento(Canvas can) {
+        this.can = can;
+    }
+
+    public Canvas getCan() {
+        return can;
+    }
+    
     
     
 }

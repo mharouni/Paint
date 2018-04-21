@@ -14,8 +14,8 @@ import java.util.Map;
 public abstract class AbstractShape implements Shape {
     protected Point position;
     protected Map<String, Double> properties;
-    protected Color color;
-    protected Color fillColor;
+    protected Color color = Color.BLACK;
+    protected Color fillColor = Color.WHITE;
 
     @Override
     public Point getPosition() {
@@ -34,6 +34,7 @@ public abstract class AbstractShape implements Shape {
 
     @Override
     public void setColor(Color color) {
+        
         this.color = color;
     }
 
@@ -47,6 +48,16 @@ public abstract class AbstractShape implements Shape {
         this.fillColor = fillColor;
     }
     
-    public Object clone() throws CloneNotSupportedException{return null;}
+     public void setProperties(java.util.Map<String, Double> properties){
+            this.properties=properties;}
+     
+     
+    public java.util.Map<String, Double> getProperties(){return this.properties; }
+    
+    public Object clone() throws CloneNotSupportedException
+    {
+        return null;
+    }
+   
     
     }

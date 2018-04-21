@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.awt.Graphics;
 import model.Shape;
 
 /**

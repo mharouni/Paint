@@ -14,7 +14,7 @@ import view.Canvas;
 public class Paint {
     public static void main(String[] args)
     {
-        new Canvas().setVisible(true);
+        Canvas.getInstance().setVisible(true);
         
     }
 }

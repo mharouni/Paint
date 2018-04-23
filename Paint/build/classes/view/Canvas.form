@@ -49,8 +49,8 @@
           <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="canvas1" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="canvas1" min="-2" pref="786" max="-2" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -150,16 +150,15 @@
                                   <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="74" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="162" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="156" max="-2" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -222,7 +221,7 @@
                       <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -278,7 +277,7 @@
               <ComponentRef name="buttonGroup1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/omarahmedheshamaziz/Desktop/Project 3/shape_circle.png"/>
+              <Image iconType="2" name="C:\Users\MaramH\Desktop\Paint\shape_circle.png"/>
             </Property>
           </Properties>
           <Events>
@@ -291,9 +290,12 @@
               <ComponentRef name="buttonGroup1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/omarahmedheshamaziz/Desktop/Project 3/shape_ellipse.png"/>
+              <Image iconType="2" name="C:\Users\MaramH\Desktop\Paint\shape_ellipse.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EllipseActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="Rectangle">
           <Properties>
@@ -301,9 +303,12 @@
               <ComponentRef name="buttonGroup1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/omarahmedheshamaziz/Desktop/Project 3/shape_rectangle.png"/>
+              <Image iconType="2" name="C:\Users\MaramH\Desktop\Paint\shape_rectangle.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RectangleActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="Square">
           <Properties>
@@ -311,9 +316,12 @@
               <ComponentRef name="buttonGroup1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/omarahmedheshamaziz/Desktop/Project 3/shape_square.png"/>
+              <Image iconType="2" name="C:\Users\MaramH\Desktop\Paint\shape_square.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SquareActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="Triangle">
           <Properties>
@@ -321,9 +329,12 @@
               <ComponentRef name="buttonGroup1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/omarahmedheshamaziz/Desktop/Project 3/shape_triangle.png"/>
+              <Image iconType="2" name="C:\Users\MaramH\Desktop\Paint\shape_triangle.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="TriangleActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JToggleButton" name="LineSegment">
           <Properties>
@@ -331,9 +342,12 @@
               <ComponentRef name="buttonGroup1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/omarahmedheshamaziz/Desktop/Project 3/vector_line.png"/>
+              <Image iconType="2" name="C:\Users\MaramH\Desktop\Paint\vector_line.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LineSegmentActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton5">
           <Properties>
@@ -371,6 +385,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="canvas1MouseClicked"/>
         <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="canvas1MousePressed"/>
         <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="canvas1MouseReleased"/>
         <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="canvas1MouseDragged"/>

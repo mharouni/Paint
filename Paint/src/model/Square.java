@@ -24,7 +24,7 @@ public class Square extends Rectangle {
         
     }
     
-    public void draw(Graphics canvas)
+    public void draw(Object canvas)
     {
         Graphics g = (Graphics)canvas;
         ((Graphics2D)canvas).setColor(getFillColor());

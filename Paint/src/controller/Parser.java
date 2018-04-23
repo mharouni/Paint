@@ -14,13 +14,21 @@ import java.util.ArrayList;
  * @author MaramH
  */
 public class Parser implements DrawingEngine {
+    
     private ArrayList<Shape> sh = new ArrayList<Shape>();
+    
+    
     @Override
     public void draw(Object canvas){
         Graphics g = (Graphics)canvas;
         for(Shape shape: sh){
-           shape.draw(g);
+           shape.draw(g); 
+           
         }
+    }
+
+    public ArrayList<Shape> getSh() {
+        return sh;
     }
     
     

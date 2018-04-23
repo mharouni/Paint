@@ -11,7 +11,7 @@ import view.Canvas;
  * @author harouni
  */
 public class Caretaker {
-   public ArrayList<Memento> savedcans= new ArrayList<Memento>();
+   public ArrayList<Memento> savedcans= new ArrayList<>();
    
    public void addMemento(Memento m)
    {

@@ -30,7 +30,7 @@ public class LineSegment extends AbstractShape {
     {
        // Graphics g = (Graphics)canvas;
        // ((Graphics2D)canvas).setColor(getColor());
-        ((Graphics2D)canvas).drawLine((int)position.x,(int)position.y,(int)properties.get("x2").intValue(),(int)properties.get("y2").intValue());
+        ((Graphics2D)canvas).drawLine((int)position.x,(int)position.y,(int)properties.get("X2").intValue(),(int)properties.get("Y2").intValue());
         ((Graphics2D)canvas).setStroke(new BasicStroke(2));
         ((Graphics2D)canvas).setColor(getColor());
         

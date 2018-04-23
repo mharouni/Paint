@@ -16,7 +16,7 @@ import model.*;
 public class Factory {
     
     Shape shape;
-    Map<String, Double> prop = new HashMap<>();
+ 
     
     public Shape factoryMethod(String s)
     {
@@ -44,24 +44,34 @@ public class Factory {
     public void factoryProp(Shape s, double x, double y)
     {
         if(s instanceof Circle )
+        {    Map<String, Double> prop = new HashMap<>();
             prop.put("radius",x-s.getPosition().x);
-        else if(s instanceof Ellipse){
+               s.setProperties(prop);
+   }
+        else if(s instanceof Ellipse){    Map<String, Double> prop = new HashMap<>();
             prop.put("width",x-s.getPosition().x);
-            prop.put("height", y-s.getPosition().y);}
-        else if(s instanceof Square)
+            prop.put("height", y-s.getPosition().y);
+           s.setProperties(prop);}
+        else if(s instanceof Square){   Map<String, Double> prop = new HashMap<>();
             prop.put("side",x-s.getPosition().x);
-        else if(s instanceof Rectangle){
+           s.setProperties(prop);}
+        else if(s instanceof Rectangle){   Map<String, Double> prop = new HashMap<>();
             prop.put("width",x-s.getPosition().x);
-            prop.put("height",y-s.getPosition().y);}
+            prop.put("height",y-s.getPosition().y);
+           s.setProperties(prop);}
         else if(s instanceof LineSegment){
-            prop.put("x2", x);
-            prop.put("y2", y);}
+               Map<String, Double> prop = new HashMap<>();
+            prop.put("X2", x);
+            prop.put("Y2", y);
+           s.setProperties(prop);}
         else if ( s instanceof Triangle){
+               Map<String, Double> prop = new HashMap<>();
                 prop.put("x2",x);
                  prop.put("y2",(double)s.getPosition().y);
                  prop.put("x3",Math.abs(s.getPosition().x+x)/2);
-                 prop.put("y3",y);}
-        s.setProperties(prop);
+                 prop.put("y3",y);
+           s.setProperties(prop);}
+     
         
         }
     

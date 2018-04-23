@@ -379,11 +379,9 @@ public class Canvas extends javax.swing.JFrame {
      //System.out.println("Maram");
        p.addShape(f.factoryMethod(s));
     Shape x = p.getSh().get(p.getSh().size()-1);
-    canvas1.contains(x.);
        (p.getSh().get(p.getSh().size()-1)).setColor(jRadioButton1.getBackground());
        (p.getSh().get(p.getSh().size()-1)).setFillColor(jRadioButton2.getBackground());
        p.getSh().get(p.getSh().size()-1).setPosition(evt.getPoint());
-       p.getSh
       
 
     }//GEN-LAST:event_canvas1MousePressed

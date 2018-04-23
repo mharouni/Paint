@@ -8,6 +8,8 @@ package controller;
 import java.awt.Graphics;
 import model.Shape;
 import java.util.ArrayList;
+import view.Canvas;
+import static view.Canvas.setCanvas;
 
 /**
  *
@@ -16,6 +18,11 @@ import java.util.ArrayList;
 public class Parser implements DrawingEngine {
     
     private ArrayList<Shape> sh = new ArrayList<Shape>();
+    private Originator Org = new Originator();
+    private Caretaker care = new Caretaker();
+    private int counter=0;
+    
+    
     
     
     @Override
@@ -25,6 +32,12 @@ public class Parser implements DrawingEngine {
            shape.draw(g); 
            
         }
+        Org.setCan(Canvas.getInstance());
+        care.addMemento(Org.createMemento());
+        int x = getCounter();
+        x++;
+        setCounter(x);
+        
     }
 
     public ArrayList<Shape> getSh() {
@@ -33,25 +46,38 @@ public class Parser implements DrawingEngine {
     
     
     public void addShape(Shape shape){
+
         
         sh.add(shape);
     }
     
    
     public void removeShape(Shape shape){
-    
+
         for(Shape shapes: sh){
             if(shapes.equals(shape))
                 sh.remove(shape);
             
+            
         }
+        Org.setCan(Canvas.getInstance());
+        care.addMemento(Org.createMemento());
+        int x = getCounter();
+        x++;
+        setCounter(x);
     }
     
     
     public void updateShape(Shape oldShape, Shape newShape){
       for(Shape shapes: sh){
             if(shapes.equals(oldShape))
-                sh.set(sh.indexOf(oldShape), newShape);}}
+                sh.set(sh.indexOf(oldShape), newShape);}
+        Org.setCan(Canvas.getInstance());
+        care.addMemento(Org.createMemento());
+        int x = getCounter();
+        x++;
+        setCounter(x);
+    }
     
     
     
@@ -62,15 +88,49 @@ public class Parser implements DrawingEngine {
         return shapes;}
     
     
-    public void undo(){}
+    public void undo() 
+    {
+        try{
+        int x = getCounter();
+        setCanvas(Org.returnMemento(care.getMemento(x)));
+        x--;
+        setCounter(x);
+                }
+        catch(IndexOutOfBoundsException e)
+        {
+            
+        }
+    }
     
     
-    public void redo(){}
+    public void redo(){
+    
+            try{
+        int x = getCounter();
+        setCanvas(Org.returnMemento(care.getMemento(x)));
+        x++;
+        setCounter(x);
+                }
+        catch(IndexOutOfBoundsException e)
+        {
+            
+        }
+    
+    }
     
     
     public void save(String path){}
     
     
     public void load(String path){}
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+    
     
     }

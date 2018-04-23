@@ -15,10 +15,10 @@ import model.*;
  */
 public class Factory {
     
-    AbstractShape shape;
+    Shape shape;
     Map<String, Double> prop = new HashMap<>();
     
-    public AbstractShape factoryMethod(String s)
+    public Shape factoryMethod(String s)
     {
         if(s == null)
             return null;
@@ -26,7 +26,7 @@ public class Factory {
             return new Circle();
         else if(s.equalsIgnoreCase("Ellipse"))
             return new Ellipse();
-        else if(s.equalsIgnoreCase("Recatngle"))
+        else if(s.equalsIgnoreCase("Rectangle"))
             return new Rectangle();
         else if(s.equalsIgnoreCase("Square"))
             return new Square();
@@ -41,7 +41,7 @@ public class Factory {
             
     }
     
-    public void factoryProp(AbstractShape s, double x, double y)
+    public void factoryProp(Shape s, double x, double y)
     {
         if(s instanceof Circle )
             prop.put("radius",x-s.getPosition().x);
@@ -56,18 +56,15 @@ public class Factory {
         else if(s instanceof LineSegment){
             prop.put("x2", x);
             prop.put("y2", y);}
+        else if ( s instanceof Triangle){
+                prop.put("x2",x);
+                 prop.put("y2",(double)s.getPosition().y);
+                 prop.put("x3",Math.abs(s.getPosition().x+x)/2);
+                 prop.put("y3",y);}
         s.setProperties(prop);
         
         }
     
-             public void factoryProp(AbstractShape s,Point y,Point z)
-             {
-                 prop.put("x2",(double)y.x);
-                 prop.put("y2",(double)y.y);
-                 prop.put("x3",(double)z.x);
-                 prop.put("y3",(double)z.y);
-                 s.setProperties(prop);
-             }
                  
         
     }

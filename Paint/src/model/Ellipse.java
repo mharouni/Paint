@@ -22,12 +22,13 @@ public class Ellipse extends AbstractShape{
         properties=new HashMap<>();
         properties.put("width",0.0);
         properties.put("height",0.0);
+        
     }
     
     
     public void draw(Object canvas)
     {
-        Graphics g = (Graphics)canvas;
+      //  Graphics g = (Graphics)canvas;
         ((Graphics2D)canvas).setColor(getFillColor());
         ((Graphics2D)canvas).fillOval((int)position.x,(int)position.y,(int)properties.get("width").intValue(),(int)properties.get("height").intValue());
         ((Graphics2D)canvas).setStroke(new BasicStroke(2));

@@ -14,8 +14,8 @@ import java.util.Map;
 public abstract class AbstractShape implements Shape {
     protected Point position;
     protected Map<String, Double> properties;
-    protected Color color = Color.BLACK;
-    protected Color fillColor = Color.WHITE;
+    protected Color color ;
+    protected Color fillColor;
 
     @Override
     public Point getPosition() {

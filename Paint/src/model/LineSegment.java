@@ -21,8 +21,8 @@ public class LineSegment extends AbstractShape {
     public LineSegment()
     {
         properties=new HashMap<>();
-        properties.put("x2",0.0);
-        properties.put("y2",0.0);
+        properties.put("X2",0.0);
+        properties.put("Y2",0.0);
     }
     
     

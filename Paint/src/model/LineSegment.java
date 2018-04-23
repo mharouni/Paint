@@ -48,6 +48,21 @@ public class LineSegment extends AbstractShape {
         return s;
         
     }
+    public boolean Contains(Point p)
+    {
+        double i= position.x-properties.get("x2");
+        double j= position.y-properties.get("y2");
+        double i1= position.x-p.x;
+        double j1 = position.y-p.y;
+        double mag= Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
+        double mag1 = Math.sqrt(Math.pow(i1,2) + Math.pow(j1,2));
+        double angle= Math.toDegrees(Math.atan(j/i));
+        double angle1= Math.toDegrees(Math.atan(j1/i1));
+        if (mag>=mag1 && angle == angle1  )
+                return true;
+        else return false;
+        
+    }
    
 
     

@@ -8,6 +8,7 @@ package model;
 import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,6 +48,13 @@ public class Square extends Rectangle {
         s.setProperties(newP);
         return s;
         
+    }
+    public boolean Contains(Point p)
+    {
+        double i = properties.get("side");
+        if ((Math.abs((double)position.x - p.x) <=i)  && (Math.abs((double)position.y - p.y) <=i))
+            return true; 
+        else return false;
     }
     }
 

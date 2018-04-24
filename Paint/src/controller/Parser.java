@@ -13,7 +13,7 @@ import static view.Canvas.setCanvas;
 
 /**
  *
- * @author MaramH
+ * @author Miralalaa
  */
 public class Parser implements DrawingEngine {
     

@@ -20,3 +20,4 @@ public class LineSegmentActions {
         
         Parser.getInstance().updateShape(e, newLS);
     }
+}

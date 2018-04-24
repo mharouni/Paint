@@ -26,3 +26,4 @@ public class TriangleActions {
         Parser.getInstance().updateShape(e, newT);
     
     }
+}

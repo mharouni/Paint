@@ -24,7 +24,7 @@ public class Parser implements DrawingEngine {
     
     private static Parser uniqueParser;
     
-    private Parser()
+    public Parser()
     {
         
     }

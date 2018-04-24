@@ -7,7 +7,6 @@ package model;
 import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,5 +50,6 @@ public class Circle extends Ellipse{
         
     }
     
-
+    
+    
 }

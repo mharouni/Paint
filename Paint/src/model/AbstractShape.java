@@ -6,16 +6,19 @@
 package model;
 import java.awt.*;
 import java.util.Map;
+import javax.swing.JComponent;
 
 /**
  *
  * @author MaramH
  */
-public abstract class AbstractShape implements Shape {
+public abstract class AbstractShape extends JComponent implements Shape {
     protected Point position;
     protected Map<String, Double> properties;
     protected Color color ;
     protected Color fillColor;
+    protected boolean Selected;
+    
 
     @Override
     public Point getPosition() {
@@ -58,6 +61,15 @@ public abstract class AbstractShape implements Shape {
     {
         return null;
     }
+
+    public boolean isSelected() {
+        return Selected;
+    }
+
+    public void setSelected(boolean Selected) {
+        this.Selected = Selected;
+    }
+    
    
     
     }

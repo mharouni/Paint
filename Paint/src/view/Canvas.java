@@ -13,6 +13,7 @@ import java.util.Enumeration;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JColorChooser;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.colorchooser.*;
@@ -35,9 +36,8 @@ public class Canvas extends javax.swing.JFrame {
     private static Canvas uniqueCanvas;
     
     private Factory f = new Factory();
-    
-    
     Parser p = new Parser();
+    Shape sh;
 
     public String getSelectedButtonText(ButtonGroup buttonGroup1) {
         for (Enumeration<AbstractButton> buttons = buttonGroup1.getElements(); buttons.hasMoreElements();) {
@@ -379,17 +379,18 @@ public class Canvas extends javax.swing.JFrame {
 
      //String s = getSelectedButtonText(buttonGroup1);
      //System.out.println("Maram");
-       p.addShape(f.factoryMethod(s));
-    Shape x = p.getSh().get(p.getSh().size()-1);
-       (p.getSh().get(p.getSh().size()-1)).setColor(jRadioButton1.getBackground());
-       (p.getSh().get(p.getSh().size()-1)).setFillColor(jRadioButton2.getBackground());
-       p.getSh().get(p.getSh().size()-1).setPosition(evt.getPoint());
+      sh = f.factoryMethod(s);
+       sh.setPosition(evt.getPoint());
+      
+ 
+       sh.setColor(jRadioButton1.getBackground());
+       sh.setFillColor(jRadioButton2.getBackground());
       
 
     }//GEN-LAST:event_canvas1MousePressed
 
     private void canvas1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvas1MouseDragged
-       f.factoryProp(p.getSh().get(p.getSh().size()-1) , evt.getX(),evt.getY());
+       f.factoryProp(sh , evt.getX(),evt.getY());
        
         
        
@@ -405,12 +406,13 @@ public class Canvas extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void canvas1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvas1MouseReleased
-     f.factoryProp(p.getSh().get(p.getSh().size()-1), evt.getX(),evt.getY());
+     f.factoryProp(sh, evt.getX(),evt.getY());
     
          canvas1.getGraphics().clearRect(0,0,canvas1.getWidth(),canvas1.getHeight());
+          p.addShape(sh);
        p.draw(canvas1.getGraphics());
         
-      // repaint();
+      repaint();
     }//GEN-LAST:event_canvas1MouseReleased
 
     private void LineSegmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LineSegmentActionPerformed
@@ -435,7 +437,12 @@ public class Canvas extends javax.swing.JFrame {
 
     private void canvas1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvas1MouseClicked
         // TODO add your handling code here:
-        for(Shape shapes:p.getSh()) {}
+        for(Shape shapes:p.getSh()) {
+           // shapes.contains(evt.getPoint());
+        JComponent panel=  (JComponent)shapes;
+        
+       
+     panel.contains(evt.getPoint());}
           
     }//GEN-LAST:event_canvas1MouseClicked
 

@@ -70,6 +70,7 @@ public abstract class AbstractShape extends JComponent implements Shape {
         this.Selected = Selected;
     }
     
+    
    
     
     }

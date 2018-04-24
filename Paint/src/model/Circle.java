@@ -51,14 +51,5 @@ public class Circle extends Ellipse{
         
     }
     
-    public boolean Contains(Point p)
-    {
-        double i = Math.abs((double)(p.x-position.x));
-        double j = Math.abs((double)(p.y-position.y));
-        double mag = (double)Math.sqrt(Math.pow(i, 2) + Math.pow(j, 2));
-        if (mag<=(double)properties.get("radius"))
-            return true;
-        else return false;
-            
-    }
+
 }

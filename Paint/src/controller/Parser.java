@@ -13,7 +13,7 @@ import static view.Canvas.setCanvas;
 
 /**
  *
- * @author MaramH
+ * @author Miralalaa
  */
 public class Parser implements DrawingEngine {
     
@@ -30,7 +30,18 @@ public class Parser implements DrawingEngine {
         return uniqueParser;
     }
     
+    private static Parser uniqueParser;
     
+    public Parser()
+    {
+        
+    }
+    public static Parser getInstance()
+    {
+        if(uniqueParser == null)
+            uniqueParser = new Parser();
+        return uniqueParser;
+    }
     
     
     @Override

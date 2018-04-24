@@ -21,22 +21,24 @@ import javax.swing.JPanel;
 import javax.swing.colorchooser.*;
 import model.*;
 import model.Shape;
+
 /**
  *
  * @author MaramH
  */
 public class Canvas extends javax.swing.JFrame {
- //private boolean 
+    //private boolean 
+
     public static void setUniqueCanvas(Canvas aUniqueCanvas) {
         uniqueCanvas = aUniqueCanvas;
     }
-   private String s = "LineSegment";
+    private String s = "LineSegment";
 
     /**
      * Creates new form Canvas
      */
     private static Canvas uniqueCanvas;
-    
+
     private Factory f = new Factory();
     Parser p = Parser.getInstance();
     Shape sh;
@@ -52,24 +54,24 @@ public class Canvas extends javax.swing.JFrame {
 
         return null;
     }
-    
+
     private Canvas() {
         initComponents();
         buttonGroup2.setSelected(jRadioButton3.getModel(), true);
-              jRadioButton1.setSelected(true);
+        jRadioButton1.setSelected(true);
 
-        buttonGroup1.setSelected(LineSegment.getModel(),true);
-        
-        
+        buttonGroup1.setSelected(LineSegment.getModel(), true);
+
     }
-    public static void setCanvas(Canvas can)
-    {
-        uniqueCanvas= can;
+
+    public static void setCanvas(Canvas can) {
+        uniqueCanvas = can;
     }
-    public static Canvas getInstance()
-    {
-        if(uniqueCanvas == null)
+
+    public static Canvas getInstance() {
+        if (uniqueCanvas == null) {
             uniqueCanvas = new Canvas();
+        }
         return uniqueCanvas;
     }
 
@@ -153,6 +155,7 @@ public class Canvas extends javax.swing.JFrame {
         jLabel3.setText("Colors");
 
         buttonGroup1.add(Circle);
+        Circle.setIcon(new javax.swing.ImageIcon("C:\\Users\\google\\Desktop\\paint\\Paint\\shape_circle.png")); // NOI18N
         Circle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CircleActionPerformed(evt);
@@ -160,6 +163,7 @@ public class Canvas extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(Ellipse);
+        Ellipse.setIcon(new javax.swing.ImageIcon("C:\\Users\\google\\Desktop\\paint\\Paint\\shape_ellipse.png")); // NOI18N
         Ellipse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EllipseActionPerformed(evt);
@@ -167,6 +171,7 @@ public class Canvas extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(Rectangle);
+        Rectangle.setIcon(new javax.swing.ImageIcon("C:\\Users\\google\\Desktop\\paint\\Paint\\shape_rectangle.png")); // NOI18N
         Rectangle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RectangleActionPerformed(evt);
@@ -174,6 +179,7 @@ public class Canvas extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(Square);
+        Square.setIcon(new javax.swing.ImageIcon("C:\\Users\\google\\Desktop\\paint\\Paint\\shape_square.png")); // NOI18N
         Square.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SquareActionPerformed(evt);
@@ -181,6 +187,7 @@ public class Canvas extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(Triangle);
+        Triangle.setIcon(new javax.swing.ImageIcon("C:\\Users\\google\\Desktop\\paint\\Paint\\shape_triangle.png")); // NOI18N
         Triangle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TriangleActionPerformed(evt);
@@ -188,6 +195,7 @@ public class Canvas extends javax.swing.JFrame {
         });
 
         buttonGroup1.add(LineSegment);
+        LineSegment.setIcon(new javax.swing.ImageIcon("C:\\Users\\google\\Desktop\\paint\\Paint\\vector_line.png")); // NOI18N
         LineSegment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LineSegmentActionPerformed(evt);
@@ -382,44 +390,44 @@ public class Canvas extends javax.swing.JFrame {
     }//GEN-LAST:event_CircleActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-         Color c = JColorChooser.showDialog(null, "Choose a Color", jButton5.getForeground());
-         if(jRadioButton1.isSelected())
-             jRadioButton1.setBackground(c);
-       if(jRadioButton2.isSelected())
-             jRadioButton2.setBackground(c);
-       
+        Color c = JColorChooser.showDialog(null, "Choose a Color", jButton5.getForeground());
+        if (jRadioButton1.isSelected()) {
+            jRadioButton1.setBackground(c);
+        }
+        if (jRadioButton2.isSelected()) {
+            jRadioButton2.setBackground(c);
+        }
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void canvas1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvas1MousePressed
 
-     //String s = getSelectedButtonText(buttonGroup1);
-     //System.out.println("Maram");
-     
+        //String s = getSelectedButtonText(buttonGroup1);
+        //System.out.println("Maram");
         sh = f.factoryMethod(s);
-       sh.setPosition(evt.getPoint());
-       if (!jRadioButton3.isSelected()){
+        sh.setPosition(evt.getPoint());
+        if (!jRadioButton3.isSelected()) {
             sh.setFillColor(jRadioButton2.getBackground());
-           
-       }
-       else { 
-           sh.setFillColor(new Color(1f,1f,1f,.1f ));}
-      
-     sh.setColor(jRadioButton1.getBackground());
-     
-      
+
+        } else {
+            sh.setFillColor(new Color(1f, 1f, 1f, .1f));
+        }
+
+        sh.setColor(jRadioButton1.getBackground());
+
 
     }//GEN-LAST:event_canvas1MousePressed
 
     private void canvas1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvas1MouseDragged
-       f.factoryProp(sh , evt.getX(),evt.getY());
-       
-        
-       
-       p.draw(canvas1.getGraphics()); 
-       canvas1.getGraphics().clearRect(0,0,canvas1.getWidth(),canvas1.getHeight());
-     
-       repaint();
-       
+        f.factoryProp(sh, evt.getX(), evt.getY());
+
+        sh.draw(canvas1.getGraphics());
+        repaint();
+        p.draw(canvas1.getGraphics());
+        canvas1.getGraphics().clearRect(0, 0, canvas1.getWidth(), canvas1.getHeight());
+
+        repaint();
+
     }//GEN-LAST:event_canvas1MouseDragged
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
@@ -427,17 +435,17 @@ public class Canvas extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void canvas1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvas1MouseReleased
-     f.factoryProp(sh, evt.getX(),evt.getY());
-    
-         canvas1.getGraphics().clearRect(0,0,canvas1.getWidth(),canvas1.getHeight());
-          p.addShape(sh);
-       p.draw(canvas1.getGraphics());
-        
-      repaint();
+        f.factoryProp(sh, evt.getX(), evt.getY());
+
+        canvas1.getGraphics().clearRect(0, 0, canvas1.getWidth(), canvas1.getHeight());
+        p.addShape(sh);
+        p.draw(canvas1.getGraphics());
+
+        repaint();
     }//GEN-LAST:event_canvas1MouseReleased
 
     private void LineSegmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LineSegmentActionPerformed
-      s = "LineSegment";
+        s = "LineSegment";
     }//GEN-LAST:event_LineSegmentActionPerformed
 
     private void SquareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SquareActionPerformed
@@ -449,7 +457,7 @@ public class Canvas extends javax.swing.JFrame {
     }//GEN-LAST:event_TriangleActionPerformed
 
     private void RectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RectangleActionPerformed
-       s = "Rectangle";
+        s = "Rectangle";
     }//GEN-LAST:event_RectangleActionPerformed
 
     private void EllipseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EllipseActionPerformed
@@ -458,17 +466,17 @@ public class Canvas extends javax.swing.JFrame {
 
     private void canvas1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvas1MouseClicked
         // TODO add your handling code here:
-        for(Shape shapes:p.getSh()) {
-           // shapes.contains(evt.getPoint());
-        JComponent panel=  (JComponent)shapes;
-        
-       
-     panel.contains(evt.getPoint());}
-          
+        for (Shape shapes : p.getSh()) {
+            // shapes.contains(evt.getPoint());
+            JComponent panel = (JComponent) shapes;
+
+            panel.contains(evt.getPoint());
+        }
+
     }//GEN-LAST:event_canvas1MouseClicked
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
- 
+
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
     /**

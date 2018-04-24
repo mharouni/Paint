@@ -4,25 +4,22 @@
  * and open the template in the editor.
  */
 package Actions;
-
 import controller.Factory;
 import controller.Parser;
 import model.*;
-
-
 /**
  *
  * @author google
  */
-public class TriangleActions {
+public class CircleAction {
     Factory f = new Factory();
     
-    public void resize(Triangle e, double x, double y) throws CloneNotSupportedException
+    public void resize(Circle c, double x, double y) throws CloneNotSupportedException
     {
-        Triangle newT = (Triangle)e.clone();
+        Circle newCircle = (Circle)c.clone();
         
-        f.factoryProp(newT, x, y);
+        f.factoryProp(newCircle, x, y);
         
-        Parser.getInstance().updateShape(e, newT);
-    
+        Parser.getInstance().updateShape(c, newCircle);
     }
+}

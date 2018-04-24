@@ -9,7 +9,6 @@ import model.Shape;
 
 /**
  *
- * @author omarahmedheshamaziz
  */
 public interface Actions {
     
@@ -20,7 +19,4 @@ public interface Actions {
     public void copy(Shape s);
     
     public void delete(Shape s);
-    
-    
-    
 }

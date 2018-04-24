@@ -15,7 +15,7 @@ import javax.swing.JComponent;
 public abstract class AbstractShape extends JComponent implements Shape {
     protected Point position;
     protected Map<String, Double> properties;
-    protected Color color ;
+    protected Color color=Color.BLACK ;
     protected Color fillColor;
     protected boolean Selected;
     

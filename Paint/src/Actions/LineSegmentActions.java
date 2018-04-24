@@ -9,10 +9,6 @@ import controller.Factory;
 import controller.Parser;
 import model.*;
 
-/**
- *
- * @author google
- */
 public class LineSegmentActions {
     Factory f = new Factory();
     
@@ -24,4 +20,3 @@ public class LineSegmentActions {
         
         Parser.getInstance().updateShape(e, newLS);
     }
-}

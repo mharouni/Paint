@@ -24,6 +24,5 @@ public class TriangleActions {
         f.factoryProp(newT, x, y);
         
         Parser.getInstance().updateShape(e, newT);
-    }
     
-}
+    }

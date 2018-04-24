@@ -40,7 +40,7 @@ public class Canvas extends javax.swing.JFrame {
     private static Canvas uniqueCanvas;
 
     private Factory f = new Factory();
-    Parser p = new Parser();
+    Parser p = Parser.getInstance();
     Shape sh;
 
     public String getSelectedButtonText(ButtonGroup buttonGroup1) {

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Actions;
+
 import controller.Factory;
 import controller.Parser;
 import model.*;
@@ -23,4 +24,3 @@ public class RectangleActions {
         Parser.getInstance().updateShape(e, newR);
     }
 }
-

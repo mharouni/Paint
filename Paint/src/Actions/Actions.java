@@ -9,7 +9,6 @@ import model.Shape;
 
 /**
  *
- * @author google
  */
 public interface Actions {
     

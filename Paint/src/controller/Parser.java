@@ -21,6 +21,14 @@ public class Parser implements DrawingEngine {
     private Originator Org = new Originator();
     private Caretaker care = new Caretaker();
     private int counter=0;
+    private static Parser uniqueParser;
+    
+   public static Parser getInstance()
+    {
+        if(uniqueParser == null)
+            uniqueParser = new Parser();
+        return uniqueParser;
+    }
     
     private static Parser uniqueParser;
     

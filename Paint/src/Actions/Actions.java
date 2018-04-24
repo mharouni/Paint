@@ -5,10 +5,19 @@
  */
 package Actions;
 
+import model.Shape;
+
 /**
  *
  * @author google
  */
 public interface Actions {
     
+    public void resize(Shape s,double x, double y);
+    
+    public void move(Shape s, double x, double y);
+    
+    public void copy(Shape s);
+    
+    public void delete(Shape s);
 }

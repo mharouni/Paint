@@ -41,7 +41,7 @@ public class Canvas extends javax.swing.JFrame {
 
     private Factory f = new Factory();
     Parser p = Parser.getInstance();
-    Shape sh;
+    AbstractShape sh;
 
     public String getSelectedButtonText(ButtonGroup buttonGroup1) {
         for (Enumeration<AbstractButton> buttons = buttonGroup1.getElements(); buttons.hasMoreElements();) {
@@ -404,7 +404,7 @@ public class Canvas extends javax.swing.JFrame {
 
         //String s = getSelectedButtonText(buttonGroup1);
         //System.out.println("Maram");
-        sh = f.factoryMethod(s);
+        sh = (AbstractShape)f.factoryMethod(s);
         sh.setPosition(evt.getPoint());
         if (!jRadioButton3.isSelected()) {
             sh.setFillColor(jRadioButton2.getBackground());
@@ -471,6 +471,7 @@ public class Canvas extends javax.swing.JFrame {
             JComponent panel = (JComponent) shapes;
 
             panel.contains(evt.getPoint());
+            
         }
 
     }//GEN-LAST:event_canvas1MouseClicked

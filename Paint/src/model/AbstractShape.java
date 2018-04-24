@@ -70,7 +70,6 @@ public abstract class AbstractShape extends JComponent implements Shape {
         this.Selected = Selected;
     }
     
-    
-   
+    //public abstract boolean Contains(Point p);
     
     }

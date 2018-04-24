@@ -8,6 +8,7 @@ package controller;
 import java.awt.Graphics;
 import model.Shape;
 import java.util.ArrayList;
+import model.AbstractShape;
 import view.Canvas;
 import static view.Canvas.setCanvas;
 
@@ -17,7 +18,7 @@ import static view.Canvas.setCanvas;
  */
 public class Parser implements DrawingEngine {
     
-    private ArrayList<Shape> sh = new ArrayList<Shape>();
+    private ArrayList<AbstractShape> sh = new ArrayList<AbstractShape>();
     private Originator Org = new Originator();
     private Caretaker care = new Caretaker();
     private int counter=0;
@@ -30,18 +31,13 @@ public class Parser implements DrawingEngine {
         return uniqueParser;
     }
     
-    private static Parser uniqueParser;
+
     
     public Parser()
     {
         
     }
-    public static Parser getInstance()
-    {
-        if(uniqueParser == null)
-            uniqueParser = new Parser();
-        return uniqueParser;
-    }
+    
     
     
     @Override
@@ -59,7 +55,7 @@ public class Parser implements DrawingEngine {
         
     }
 
-    public ArrayList<Shape> getSh() {
+    public ArrayList<AbstractShape> getSh() {
         return sh;
     }
     
@@ -67,14 +63,14 @@ public class Parser implements DrawingEngine {
     public void addShape(Shape shape){
 
         
-        sh.add(shape);
+        sh.add((AbstractShape)shape);
     }
     
    
     public void removeShape(Shape shape){
 
-        for(Shape shapes: sh){
-            if(shapes.equals(shape))
+        for(AbstractShape shapes: sh){
+            if(shapes.equals((AbstractShape)shape))
                 sh.remove(shape);
             
             
@@ -90,7 +86,7 @@ public class Parser implements DrawingEngine {
     public void updateShape(Shape oldShape, Shape newShape){
       for(Shape shapes: sh){
             if(shapes.equals(oldShape))
-                sh.set(sh.indexOf(oldShape), newShape);}
+                sh.set(sh.indexOf(oldShape), (AbstractShape)newShape);}
         Org.setCan(Canvas.getInstance());
         care.addMemento(Org.createMemento());
         int x = getCounter();

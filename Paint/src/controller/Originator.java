@@ -25,6 +25,6 @@ public class Originator {
         System.out.println("Originator retrieved a memento");
         return memento.getCan();
     }
-                
-    
+
+
 }

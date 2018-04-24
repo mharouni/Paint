@@ -22,7 +22,18 @@ public class Parser implements DrawingEngine {
     private Caretaker care = new Caretaker();
     private int counter=0;
     
+    private static Parser uniqueParser;
     
+    private Parser()
+    {
+        
+    }
+    public static Parser getInstance()
+    {
+        if(uniqueParser == null)
+            uniqueParser = new Parser();
+        return uniqueParser;
+    }
     
     
     @Override

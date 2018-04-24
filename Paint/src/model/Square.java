@@ -52,9 +52,55 @@ public class Square extends Rectangle {
     public boolean Contains(Point p)
     {
         double i = properties.get("side");
-        if ((Math.abs((double)position.x - p.x) <=i)  && (Math.abs((double)position.y - p.y) <=i))
-            return true; 
+        if (position.x > p.x && position.y >p.y) {
+            if (((double) position.x - p.x <= i) && ((double) position.y - p.y<= i))
+                return true;
+            else return false;
+        }
+        else if (position.x < p.x && position.y > p.y)
+        {
+            if (((double) p.x - position.x <= i) && ((double) position.y - p.y<= i))
+                return true;
+            else return false;
+        }
+        else if (position.x > p.x && position.y < p.y)
+        {
+            if (((double) position.x - p.x <= i) && ((double) p.y - position.y<= i))
+                return true;
+            else return false;
+        }
+        else if (position.x < p.x && position.y < p.y)
+        {
+            if (((double) p.x - position.x <= i) && ((double) p.y - position.y<= i))
+                return true;
+            else return false;
+        }
+        else if (position.x == p.x && position.y < p.y)
+        {
+            if (p.y - position.y <= i)
+                return  true;
+            else return false;
+        }
+        else if (position.x == p.x && position.y > p.y) {
+            if (position.y - p.y <= i)
+                return true;
+            else return false;
+        }
+        else if (position.y == p.y && position.x < p.x)
+        {
+            if (p.x - position.x <= i)
+                return  true;
+            else return false;
+        }
+        else if (position.y == p.y && position.x > p.x) {
+            if (position.x - p.x <= i)
+                return true;
+            else return false;
+        }
+
         else return false;
     }
+    
     }
+
 

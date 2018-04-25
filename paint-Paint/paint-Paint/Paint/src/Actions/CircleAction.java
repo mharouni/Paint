@@ -6,6 +6,7 @@
 package Actions;
 import controller.Factory;
 import controller.Parser;
+import java.awt.Point;
 import model.*;
 /**
  *
@@ -14,7 +15,7 @@ import model.*;
 public class CircleAction {
     Factory f = new Factory();
     
-    public void resize(Circle c, double x, double y) throws CloneNotSupportedException
+    public void resize(Shape c, double x, double y) throws CloneNotSupportedException
     {
         Circle newCircle = (Circle)c.clone();
         
@@ -22,4 +23,25 @@ public class CircleAction {
         
         Parser.getInstance().updateShape(c, newCircle);
     }
+    
+    public void move(Shape e, Point p) throws CloneNotSupportedException
+    {
+        Circle newT= (Circle)e.clone();
+        newT.setPosition(p);
+        Parser.getInstance().updateShape(e, newT);
+    }
+    
+    public void copy(Shape e) throws CloneNotSupportedException
+    {
+        Circle newT = (Circle)e.clone();
+        Point p= new Point(newT.getPosition().x+10,newT.getPosition().y-10);
+        move(newT,p);
+        Parser.getInstance().addShape(newT);
+    }
+    
+    public void delete(Shape e)
+    {
+        Parser.getInstance().removeShape(e);
+    }
+            
 }

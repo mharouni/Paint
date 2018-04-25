@@ -4,23 +4,26 @@
  * and open the template in the editor.
  */
 package controller;
-import view.Canvas;
+import java.awt.Canvas;
+import model.AbstractShape;
+import java.util.ArrayList;
 
 /**
  *
  * @author harouni
  */
 public class Memento {
-    private Canvas can;
+private ArrayList<AbstractShape> array = new ArrayList<AbstractShape>();
 
-    public Memento(Canvas can) {
-        this.can = can;
-    }
-
-    public Canvas getCan() {
-        return can;
-    }
-    
-    
-    
+public Memento(ArrayList<AbstractShape> arr)
+{
+    this.array=arr;
 }
+
+    public ArrayList<AbstractShape> getArray() {
+        return array;
+    }
+
+     
+}
+

@@ -7,6 +7,7 @@ package Actions;
 
 import controller.Factory;
 import controller.Parser;
+import java.awt.Point;
 import model.*;
 /**
  *
@@ -15,12 +16,31 @@ import model.*;
 public class RectangleActions {
     Factory f = new Factory();
     
-    public void resize(Rectangle e, double x, double y) throws CloneNotSupportedException
+    public void resize(Shape e, double x, double y) throws CloneNotSupportedException
     {
         Rectangle newR = (Rectangle)e.clone();
         
         f.factoryProp(newR, x, y);
         
         Parser.getInstance().updateShape(e, newR);
+    }
+    public void move(Shape e, Point p) throws CloneNotSupportedException
+    {
+        Rectangle newT= (Rectangle)e.clone();
+        newT.setPosition(p);
+        Parser.getInstance().updateShape(e, newT);
+    }
+    
+    public void copy(Shape e) throws CloneNotSupportedException
+    {
+        Rectangle newT = (Rectangle)e.clone();
+        Point p= new Point(newT.getPosition().x+10,newT.getPosition().y-10);
+        move(newT,p);
+        Parser.getInstance().addShape(newT);
+    }
+    
+    public void delete(Shape e)
+    {
+        Parser.getInstance().removeShape(e);
     }
 }

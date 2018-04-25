@@ -5,6 +5,7 @@
  */
 package Actions;
 
+import java.awt.Point;
 import model.Shape;
 
 /**
@@ -12,11 +13,11 @@ import model.Shape;
  */
 public interface Actions {
     
-    public void resize(Shape s,double x, double y);
+    public void resize(Shape s,double x, double y) throws CloneNotSupportedException;
     
-    public void move(Shape s, double x, double y);
+    public void move(Shape s, Point p) throws CloneNotSupportedException;
     
-    public void copy(Shape s);
+    public void copy(Shape s,Point p) throws CloneNotSupportedException;
     
     public void delete(Shape s);
 }

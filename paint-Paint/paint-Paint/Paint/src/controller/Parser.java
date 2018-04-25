@@ -9,7 +9,7 @@ import java.awt.Graphics;
 import model.Shape;
 import java.util.ArrayList;
 import model.AbstractShape;
-import view.Canvas;
+import java.awt.Canvas;
 import static view.Canvas.setCanvas;
 
 /**
@@ -43,10 +43,13 @@ public class Parser implements DrawingEngine {
     @Override
     public void draw(Object canvas){
         Graphics g = (Graphics)canvas;
+        if(sh.isEmpty())
+        {}
+        else{
         for(Shape shape: sh){
            shape.draw(g); 
            
-        }
+        }}
         
         
     }
@@ -60,7 +63,7 @@ public class Parser implements DrawingEngine {
 
         
         sh.add((AbstractShape)shape);
-        Org.setCan(Canvas.getInstance());
+        Org.setCan(sh);
         care.addMemento(Org.createMemento());
         int x = getCounter();
         x++;
@@ -69,18 +72,23 @@ public class Parser implements DrawingEngine {
     
    
     public void removeShape(Shape shape){
+        
+        try{
 
-        for(AbstractShape shapes: sh){
-            if(shapes.equals((AbstractShape)shape))
-                sh.remove(shape);
-            
-            
-        }
-        Org.setCan(Canvas.getInstance());
+        for(int i=0; i<sh.size();i++){
+            if((sh.get(i)).equals((AbstractShape)shape))
+                sh.remove(i);}
+         Org.setCan(sh);
         care.addMemento(Org.createMemento());
         int x = getCounter();
         x++;
-        setCounter(x);
+        setCounter(x);}
+        catch(IndexOutOfBoundsException e){}
+            
+            
+            
+        
+       
     }
     
     
@@ -88,7 +96,7 @@ public class Parser implements DrawingEngine {
       for(Shape shapes: sh){
             if(shapes.equals(oldShape))
                 sh.set(sh.indexOf(oldShape), (AbstractShape)newShape);}
-        Org.setCan(Canvas.getInstance());
+        Org.setCan(sh);
         care.addMemento(Org.createMemento());
         int x = getCounter();
         x++;
@@ -104,11 +112,12 @@ public class Parser implements DrawingEngine {
         return shapes;}
     
     
+    @Override
     public void undo() 
     {
         try{
         int x = getCounter();
-        setCanvas(Org.returnMemento(care.getMemento(x)));
+        sh=Org.returnMemento(care.getMemento(x));
         x--;
         setCounter(x);
                 }
@@ -119,11 +128,12 @@ public class Parser implements DrawingEngine {
     }
     
     
+    @Override
     public void redo(){
     
             try{
         int x = getCounter();
-        setCanvas(Org.returnMemento(care.getMemento(x)));
+        sh=Org.returnMemento(care.getMemento(x));
         x++;
         setCounter(x);
                 }

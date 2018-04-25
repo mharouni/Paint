@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package model;
+import controller.Factory;
+import controller.Parser;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,8 +15,6 @@ import java.util.Map;
  * @author MaramH
  */
 public class Circle extends Ellipse{
-    
-    
     public Circle()
     {
         properties=new HashMap<>();
@@ -48,7 +48,7 @@ public class Circle extends Ellipse{
         
     }
     public boolean Contains(Point p)
-    {
+    {   //System.out.println("Bye");
         double i,j;
         double mag;
         i= (double)position.x - (double)p.x;
@@ -60,6 +60,38 @@ public class Circle extends Ellipse{
 
 
     }
+    
+    public void resize(Shape c, double x, double y) throws CloneNotSupportedException
+    {
+        Factory f = new Factory();
+        Circle newCircle = (Circle)c.clone();
+        
+        f.factoryProp(newCircle, x, y);
+        
+        Parser.getInstance().updateShape(c, newCircle);
+    }
+    
+    public void move(Shape e, Point p) throws CloneNotSupportedException
+    {
+        Circle newT= (Circle)e.clone();
+        newT.setPosition(p);
+        Parser.getInstance().updateShape(e, newT);
+    }
+    
+    public void copy(Shape e,Point p) throws CloneNotSupportedException
+    {
+        Circle newT = (Circle)e.clone();
+        //Point p= new Point(newT.getPosition().x+100,newT.getPosition().y+100);
+              newT.setPosition(p);
+
+        Parser.getInstance().addShape(newT);
+    }
+    
+    public void delete(Shape e)
+    {
+        Parser.getInstance().removeShape(e);
+    }
+      
 
     
     

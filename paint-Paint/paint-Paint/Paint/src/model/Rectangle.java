@@ -5,6 +5,8 @@
  */
 package model;
 
+import controller.Factory;
+import controller.Parser;
 import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -50,9 +52,88 @@ public class Rectangle extends AbstractShape{
         
     }
 
-    @Override
+   // @Override
     public boolean Contains(Point p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        double i = properties.get("width");
+        double j = properties.get("height");
+        if (position.x > p.x && position.y >p.y) {
+            if (((double) position.x - p.x <= i) && ((double) position.y - p.y<= i))
+                return true;
+            else return false;
+        }
+        else if (position.x < p.x && position.y > p.y)
+        {
+            if (((double) p.x - position.x <= i) && ((double) position.y - p.y<= i))
+                return true;
+            else return false;
+        }
+        else if (position.x > p.x && position.y < p.y)
+        {
+            if (((double) position.x - p.x <= i) && ((double) p.y - position.y<= i))
+                return true;
+            else return false;
+        }
+        else if (position.x < p.x && position.y < p.y)
+        {
+            if (((double) p.x - position.x <= i) && ((double) p.y - position.y<= i))
+                return true;
+            else return false;
+        }
+        else if (position.x == p.x && position.y < p.y)
+        {
+            if (p.y - position.y <= i)
+                return  true;
+            else return false;
+        }
+        else if (position.x == p.x && position.y > p.y) {
+            if (position.y - p.y <= i)
+                return true;
+            else return false;
+        }
+        else if (position.y == p.y && position.x < p.x)
+        {
+            if (p.x - position.x <= i)
+                return  true;
+            else return false;
+        }
+        else if (position.y == p.y && position.x > p.x) {
+            if (position.x - p.x <= i)
+                return true;
+            else return false;
+        }
+
+        else return false;
+    }
+    
+    public void resize(Shape e, double x, double y) throws CloneNotSupportedException
+    {
+        Factory f = new Factory();
+        
+        Rectangle newR = (Rectangle)e.clone();
+        
+        f.factoryProp(newR, x, y);
+        
+        Parser.getInstance().updateShape(e, newR);
+    }
+    public void move(Shape e, Point p) throws CloneNotSupportedException
+    {
+        Rectangle newT= (Rectangle)e.clone();
+        newT.setPosition(p);
+        Parser.getInstance().updateShape(e, newT);
+    }
+    
+    public void copy(Shape e,Point p ) throws CloneNotSupportedException
+    {
+        Rectangle newT = (Rectangle)e.clone();
+       // Point p= new Point(newT.getPosition().x+10,newT.getPosition().y-10);
+              newT.setPosition(p);
+
+        Parser.getInstance().addShape(newT);
+    }
+    
+    public void delete(Shape e)
+    {
+        Parser.getInstance().removeShape(e);
+    }
     }
 
-}

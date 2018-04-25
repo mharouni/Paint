@@ -4,26 +4,28 @@
  * and open the template in the editor.
  */
 package controller;
-import view.Canvas;
+import java.awt.Canvas;
+import java.util.ArrayList;
+import model.AbstractShape;
 /**
  *
  * @author harouni
  */
 public class Originator {
-    private Canvas can;
+    private ArrayList<AbstractShape> array = new ArrayList<AbstractShape>();
 
-    public void setCan(Canvas can) {
-        this.can = can;
+    public void setCan(ArrayList array) {
+        this.array =array ;
     }
     public Memento createMemento()
     {
         System.out.println("originator created a memento");
-        return new Memento(can);
+        return new Memento(array);
     }
-    public Canvas returnMemento(Memento memento)
+    public ArrayList returnMemento(Memento memento)
     {
         System.out.println("Originator retrieved a memento");
-        return memento.getCan();
+        return memento.getArray();
     }
 
 

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package model;
+import Actions.Actions;
 import java.awt.*;
 import java.util.Map;
 import javax.swing.JComponent;
@@ -12,8 +13,9 @@ import javax.swing.JComponent;
  *
  * @author MaramH
  */
-public abstract class AbstractShape extends JComponent implements Shape {
+public abstract class AbstractShape implements Shape, Actions {
     protected Point position;
+    protected Point centre;
     protected Map<String, Double> properties;
     protected Color color=Color.BLACK ;
     protected Color fillColor;
@@ -70,6 +72,5 @@ public abstract class AbstractShape extends JComponent implements Shape {
         this.Selected = Selected;
     }
     
-    public abstract boolean Contains(Point p);
-    
-    }
+    public boolean Contains(Point p){return false;}}
+ 

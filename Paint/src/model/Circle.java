@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package model;
-import java.awt.BasicStroke;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,7 +47,20 @@ public class Circle extends Ellipse{
         return s;
         
     }
-    
+    public boolean Contains(Point p)
+    {
+        double i,j;
+        double mag;
+        i= (double)position.x - (double)p.x;
+        j= (double)position.y - (double)p.y;
+        mag = Math.sqrt(Math.pow(i,2) + Math.pow(j,2));
+        if (mag <= properties.get("radius"))
+            return true;
+        else return false;
+
+
+    }
+
     
     
 }

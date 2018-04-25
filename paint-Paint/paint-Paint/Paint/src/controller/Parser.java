@@ -47,11 +47,7 @@ public class Parser implements DrawingEngine {
            shape.draw(g); 
            
         }
-        Org.setCan(Canvas.getInstance());
-        care.addMemento(Org.createMemento());
-        int x = getCounter();
-        x++;
-        setCounter(x);
+        
         
     }
 
@@ -64,6 +60,11 @@ public class Parser implements DrawingEngine {
 
         
         sh.add((AbstractShape)shape);
+        Org.setCan(Canvas.getInstance());
+        care.addMemento(Org.createMemento());
+        int x = getCounter();
+        x++;
+        setCounter(x);
     }
     
    

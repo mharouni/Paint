@@ -8,6 +8,7 @@ package model;
 import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -52,7 +53,19 @@ public class Ellipse extends AbstractShape{
     }
 
 
-    
+     public boolean Contains(Point p)
+    {
+        double i,j;
+        double mag;
+        i = Math.abs((double)position.x - (double)p.x);
+        j = Math.abs((double)position.y - (double)p.y);
+       //mag = Math.sqrt(Math.pow(i,2) + Math.pow(j,2));
+        if (i <= this.getWidth() && j <= this.getHeight())
+            return true;
+        else return false;
+
+
+    }
    
     
 }

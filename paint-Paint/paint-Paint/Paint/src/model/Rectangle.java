@@ -8,6 +8,7 @@ package model;
 import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -47,6 +48,11 @@ public class Rectangle extends AbstractShape{
         s.setProperties(newP);
         return s;
         
+    }
+
+    @Override
+    public boolean Contains(Point p) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

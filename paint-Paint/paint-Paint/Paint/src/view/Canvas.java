@@ -466,13 +466,12 @@ public class Canvas extends javax.swing.JFrame {
 
     private void canvas1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvas1MouseClicked
         // TODO add your handling code here:
-        for (Shape shapes : p.getSh()) {
-            // shapes.contains(evt.getPoint());
-            JComponent panel = (JComponent) shapes;
-
-            panel.contains(evt.getPoint());
-            
+        if(p.getSh().get(0).Contains(evt.getPoint()))
+        {
+            System.out.println("Clicked");
+            p.getSh().get(0).setFillColor(Color.yellow);
         }
+        repaint();
 
     }//GEN-LAST:event_canvas1MouseClicked
 

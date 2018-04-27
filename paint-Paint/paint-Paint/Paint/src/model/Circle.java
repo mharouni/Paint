@@ -61,14 +61,14 @@ public class Circle extends Ellipse{
 
     }
     
-    public void resize(Shape c, double x, double y) throws CloneNotSupportedException
+    public AbstractShape resize( double x, double y) throws CloneNotSupportedException
     {
         Factory f = new Factory();
-        Circle newCircle = (Circle)c.clone();
+        Circle newCircle = (Circle)this.clone();
         
         f.factoryProp(newCircle, x, y);
         
-        Parser.getInstance().updateShape(c, newCircle);
+        return newCircle;
     }
     
     public void move(Shape e, Point p) throws CloneNotSupportedException

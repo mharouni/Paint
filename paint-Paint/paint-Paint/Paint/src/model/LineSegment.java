@@ -67,14 +67,14 @@ public class LineSegment extends AbstractShape {
         
     }
     
-    public void resize(Shape e, double x, double y) throws CloneNotSupportedException
+    public AbstractShape resize(double x, double y) throws CloneNotSupportedException
     {
         Factory f = new Factory();
-        LineSegment newLS = (LineSegment)e.clone();
+        LineSegment newLS = (LineSegment)this.clone();
         
         f.factoryProp(newLS, x, y);
         
-        Parser.getInstance().updateShape(e, newLS);
+        return newLS;
     }
     
     public void move(Shape e, Point p) throws CloneNotSupportedException

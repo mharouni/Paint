@@ -111,14 +111,14 @@ public class Square extends Rectangle {
         }
     }
 
-    public void resize(Shape e, double x, double y) throws CloneNotSupportedException {
+    public AbstractShape resize( double x, double y) throws CloneNotSupportedException {
         Factory f = new Factory();
 
-        Square newS = (Square) e.clone();
+        Square newS = (Square) this.clone();
 
         f.factoryProp(newS, x, y);
 
-        Parser.getInstance().updateShape(e, newS);
+        return newS;
     }
 
     public void move(Shape e, Point p) throws CloneNotSupportedException {

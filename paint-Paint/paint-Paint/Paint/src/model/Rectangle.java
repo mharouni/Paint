@@ -105,15 +105,15 @@ public class Rectangle extends AbstractShape{
         else return false;
     }
     
-    public void resize(Shape e, double x, double y) throws CloneNotSupportedException
+    public AbstractShape resize( double x, double y) throws CloneNotSupportedException
     {
         Factory f = new Factory();
         
-        Rectangle newR = (Rectangle)e.clone();
+        Rectangle newR = (Rectangle)this.clone();
         
         f.factoryProp(newR, x, y);
         
-        Parser.getInstance().updateShape(e, newR);
+        return newR;
     }
     public void move(Shape e, Point p) throws CloneNotSupportedException
     {

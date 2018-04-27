@@ -5,18 +5,25 @@
  */
 package view;
 
-import Actions.Actions;
+import model.Actions;
 import controller.Factory;
 import controller.Parser;
 import java.awt.Color;
 import java.awt.*;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.Enumeration;
-import javafx.scene.Scene;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.imageio.ImageIO;
 import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout.Group;
+import javax.swing.ImageIcon;
 import javax.swing.JColorChooser;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.colorchooser.*;
@@ -36,6 +43,7 @@ public class Canvas extends javax.swing.JFrame {
         
     }
     private String state = "Draw";
+   
     private String s = "LineSegment";
     java.awt.Rectangle rect = new java.awt.Rectangle();
 
@@ -59,12 +67,31 @@ public class Canvas extends javax.swing.JFrame {
         return null;
     }
 
-    private Canvas() {
+    private Canvas(){
         initComponents();
+        
         buttonGroup2.setSelected(jRadioButton3.getModel(), true);
         jRadioButton1.setSelected(true);
 
         buttonGroup1.setSelected(LineSegment.getModel(), true);
+        resize.setEnabled(false);
+        copy.setEnabled(false);
+        move.setEnabled(false);
+        delete.setEnabled(false);
+        p.getCare().addMemento(p.getOrg().createMemento());
+  Circle.setIcon(new ImageIcon("C:\\Users\\google\\Desktop\\paint\\Paint\\paint-Paint\\paint-Paint\\Paint\\shape_ellipse.png"));
+    
+      
+        Ellipse.setIcon(new ImageIcon("C:\\Users\\google\\Desktop\\paint\\Paint\\paint-Paint\\paint-Paint\\Paint\\shape_ellipse.png"));
+           Square.setIcon(new ImageIcon("C:/Users/google/Desktop/paint/Paint/paint-Paint/paint-Paint/Paint/shape_square.png"));
+             Triangle.setIcon(new ImageIcon("C:\\Users\\google\\Desktop\\paint\\Paint\\paint-Paint\\paint-Paint\\Paint\\shape_triangle.png"));
+          Rectangle.setIcon(new ImageIcon("C:/Users/google/Desktop/paint/Paint/paint-Paint/paint-Paint/Paint/shape_rectangle.png"));
+          LineSegment.setIcon(new ImageIcon("C:/Users/google/Desktop/paint/Paint/paint-Paint/paint-Paint/Paint/vector_line.png"));
+        
+        
+      
+        
+        
      
 
     }
@@ -98,15 +125,12 @@ public class Canvas extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
         jPanel2 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         Circle = new javax.swing.JToggleButton();
         Ellipse = new javax.swing.JToggleButton();
@@ -118,9 +142,13 @@ public class Canvas extends javax.swing.JFrame {
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
         jRadioButton3 = new javax.swing.JRadioButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        select = new javax.swing.JToggleButton();
         jToggleButton2 = new javax.swing.JToggleButton();
         jToggleButton3 = new javax.swing.JToggleButton();
+        resize = new javax.swing.JToggleButton();
+        copy = new javax.swing.JToggleButton();
+        move = new javax.swing.JToggleButton();
+        delete = new javax.swing.JToggleButton();
         canvas1 = new java.awt.Canvas();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -154,24 +182,6 @@ public class Canvas extends javax.swing.JFrame {
         jLabel1.setText("Shapes");
 
         jLabel2.setText("Options");
-
-        jButton1.setText("Resize");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Move");
-
-        jButton3.setText("Delete");
-
-        jButton4.setText("Copy");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Colors");
 
@@ -242,10 +252,11 @@ public class Canvas extends javax.swing.JFrame {
             }
         });
 
-        jToggleButton1.setText("Select");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup3.add(select);
+        select.setText("Select");
+        select.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                selectActionPerformed(evt);
             }
         });
 
@@ -263,6 +274,38 @@ public class Canvas extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup3.add(resize);
+        resize.setText("Resize");
+        resize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resizeActionPerformed(evt);
+            }
+        });
+
+        buttonGroup3.add(copy);
+        copy.setText("Copy");
+        copy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                copyActionPerformed(evt);
+            }
+        });
+
+        buttonGroup3.add(move);
+        move.setText("Move");
+        move.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                moveActionPerformed(evt);
+            }
+        });
+
+        buttonGroup3.add(delete);
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -274,90 +317,91 @@ public class Canvas extends javax.swing.JFrame {
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(move, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(resize, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(jToggleButton2)
-                                .addGap(27, 27, 27)
-                                .addComponent(jToggleButton3)
-                                .addGap(18, 18, 18))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jToggleButton1)
-                                .addGap(51, 51, 51)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Circle, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Square, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(copy, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(delete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(44, 44, 44)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jToggleButton2)
+                        .addGap(27, 27, 27)
+                        .addComponent(jToggleButton3)
+                        .addGap(69, 69, 69))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(select)
+                        .addGap(102, 102, 102)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Circle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Square, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel3)
-                        .addGap(139, 139, 139))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Ellipse, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Triangle, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(Ellipse, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Rectangle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(LineSegment, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(jRadioButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-                                .addComponent(jRadioButton2)
-                                .addGap(38, 38, 38))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jRadioButton3)
-                                .addGap(131, 131, 131))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton5)
-                                .addGap(109, 109, 109))))))
+                        .addComponent(Rectangle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Triangle, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(LineSegment, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jRadioButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jRadioButton2)
+                        .addGap(44, 44, 44))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton5)
+                        .addGap(63, 63, 63))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jRadioButton3)
+                        .addGap(90, 90, 90))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(94, 94, 94))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton1)
-                                .addComponent(jButton3)
-                                .addComponent(jToggleButton1))
-                            .addComponent(Rectangle, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(Circle, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Ellipse, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(select)
+                                .addComponent(resize)
+                                .addComponent(copy))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Circle, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Rectangle, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(Ellipse, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jButton2)
-                                    .addComponent(jButton4)
                                     .addComponent(jToggleButton2)
-                                    .addComponent(jToggleButton3))
-                                .addGap(18, 18, 18))
+                                    .addComponent(jToggleButton3)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(move)
+                                    .addComponent(delete))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Triangle, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(LineSegment, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(Square, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(Triangle, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(LineSegment, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(Square, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRadioButton2)
                             .addComponent(jRadioButton1))
@@ -365,12 +409,11 @@ public class Canvas extends javax.swing.JFrame {
                         .addComponent(jRadioButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel3)))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3))
                 .addContainerGap())
         );
 
@@ -408,11 +451,14 @@ public class Canvas extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, 839, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,23 +466,16 @@ public class Canvas extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(canvas1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void CircleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CircleActionPerformed
+        state="Draw";
         s = "Circle";
     }//GEN-LAST:event_CircleActionPerformed
 
@@ -466,10 +505,12 @@ public class Canvas extends javax.swing.JFrame {
         }
 
         sh.setColor(jRadioButton1.getBackground());}
-        else{
+        else if (state.equals("Select")){
             rect.x = evt.getX();
             rect.y=evt.getY();
         }
+        else{}
+        
 
 
     }//GEN-LAST:event_canvas1MousePressed
@@ -484,7 +525,7 @@ public class Canvas extends javax.swing.JFrame {
         canvas1.getGraphics().clearRect(0, 0, canvas1.getWidth(), canvas1.getHeight());
 
         repaint();}
-        else
+        else if(state.equals("Select") )
         {
             p.draw(canvas1.getGraphics());
             rect.width= evt.getX() - rect.x;
@@ -494,6 +535,35 @@ public class Canvas extends javax.swing.JFrame {
             
             canvas1.getGraphics().clearRect(0,0,canvas1.getWidth(),canvas1.getHeight());
         }
+        else if(state.equals("Resize"))
+        {
+         int x=0;
+         
+            try {for(int i=0;i<p.getSh().size();i++)
+            {
+                AbstractShape shape;
+                if(p.getSh().get(i).isSelected())
+                {   
+                    shape=p.getSh().get(0);
+                    p.getSh().set(0,p.getSh().get(i));
+                    p.getSh().set(i, shape);
+                System.out.println(i);
+                        break;}}
+                        System.out.println("resize drag");
+                AbstractShape t=p.getSh().get(x).resize( evt.getX(), evt.getY());
+                t.draw(canvas1.getGraphics());
+                p.draw(canvas1.getGraphics());
+                        canvas1.getGraphics().clearRect(0, 0, canvas1.getWidth(), canvas1.getHeight());
+            } catch (CloneNotSupportedException | IndexOutOfBoundsException ex) {
+                Logger.getLogger(Canvas.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                         
+                
+                        
+                
+                    
+        }
+        else{}
        
        
 
@@ -513,48 +583,139 @@ public class Canvas extends javax.swing.JFrame {
 
         repaint();}
         
-        else
+        else if(state.equals("Select"))
         {  
             canvas1.getGraphics().fillRect(rect.x,rect.y,rect.width,rect.height);
             for(AbstractShape t: p.getSh())
             { 
-                if(rect.contains(t.getPosition()))
-                    t.setFillColor(Color.yellow);}
+                if(rect.contains(t.getPosition())){
+                    t.setColor(Color.RED);
+                    t.setSelected(true);
+                break;}}
             p.draw(canvas1.getGraphics());
+               resize.setEnabled(true);
+               copy.setEnabled(true);
+               move.setEnabled(true);
+               delete.setEnabled(true);
+               select.setSelected(false);
+               //state="Draw";
+               
+            
         }
+        else if(state.equals("Resize"))
+            {System.out.println("for rel");
+                for(AbstractShape r:p.getSh())
+            {
+                if(r.isSelected())
+                    try { System.out.println("resize rel");
+                        AbstractShape x=r.resize(evt.getX(), evt.getY());
+                        x.setColor(jRadioButton1.getBackground());
+                        x.setSelected(false);
+                        p.updateShape(r,x);
+                        
+                        
+                } catch (CloneNotSupportedException ex) {
+                    Logger.getLogger(Canvas.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+                
+            }
+                canvas1.getGraphics().clearRect(0, 0, canvas1.getWidth(), canvas1.getHeight());
+                 p.draw(canvas1.getGraphics());
+                 state = "Draw";
+        }
+        else{}
     }//GEN-LAST:event_canvas1MouseReleased
 
     private void LineSegmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LineSegmentActionPerformed
+         state="Draw";
         s = "LineSegment";
     }//GEN-LAST:event_LineSegmentActionPerformed
 
     private void SquareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SquareActionPerformed
+         state="Draw";
         s = "Square";
     }//GEN-LAST:event_SquareActionPerformed
 
     private void TriangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TriangleActionPerformed
+         state="Draw";
         s = "Triangle";
     }//GEN-LAST:event_TriangleActionPerformed
 
     private void RectangleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RectangleActionPerformed
+         state="Draw";
         s = "Rectangle";
     }//GEN-LAST:event_RectangleActionPerformed
 
     private void EllipseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EllipseActionPerformed
+         state="Draw";
         s = "Ellipse";
     }//GEN-LAST:event_EllipseActionPerformed
 
     private void canvas1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_canvas1MouseClicked
         // TODO add your handling code here:
-         if(state.equals("Select")){
+         if(state.equals("Move")){
             try{
-            //p.getSh().get(0).delete(p.getSh().get(0));
+           for(AbstractShape r:p.getSh())
+           {
+               if(r.isSelected())
+               {
+                   r.move(r,evt.getPoint());
+                   r.setColor(jRadioButton1.getBackground());
+                   r.setSelected(false);
+                   break;
+               }
+           }
            
             canvas1.getGraphics().clearRect(0, 0, canvas1.getWidth(), canvas1.getHeight());
              p.draw(canvas1.getGraphics());
+             state = "Draw";
+            }
+            catch(IndexOutOfBoundsException | CloneNotSupportedException e)
+        {}}
+         
+         else if(state.equals("Delete")){
+            try{
+           for(AbstractShape r:p.getSh())
+           {
+               if(r.isSelected())
+               {
+                   r.delete(r);
+                   r.setColor(jRadioButton1.getBackground());
+                   r.setSelected(false);
+                   break;
+               }
+           }
+           
+            canvas1.getGraphics().clearRect(0, 0, canvas1.getWidth(), canvas1.getHeight());
+             p.draw(canvas1.getGraphics());
+             state = "Draw";
             }
             catch(IndexOutOfBoundsException e)
-        {System.out.println("catch kadr fel alolo");}}
+        {}}
+       else if(state.equals("Copy")){
+             System.out.println("Maram");
+            try{
+           for(AbstractShape r:p.getSh())
+           {
+               if(r.isSelected())
+               {
+                   System.out.println("hi");
+                   
+                   r.setColor(jRadioButton1.getBackground());
+                   r.copy(r,evt.getPoint());
+                   r.setSelected(false);
+                   break;
+               }
+           }
+           
+            canvas1.getGraphics().clearRect(0, 0, canvas1.getWidth(), canvas1.getHeight());
+             p.draw(canvas1.getGraphics());
+             state = "Draw";
+            }
+            catch(IndexOutOfBoundsException | CloneNotSupportedException e)
+        {}}
+       else{}
 
     }//GEN-LAST:event_canvas1MouseClicked
 
@@ -562,19 +723,13 @@ public class Canvas extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        if(state.equals("Draw"))
-            state="Select";
-        else{
+    private void selectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectActionPerformed
+        if(state.equals("Select"))
             state="Draw";
-           rect.width=0;
-           rect.height=0;
-          
-           rect.setRect(rect.x, rect.y, 0, 0);
-            
-        repaint();
-        }
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+        else
+            state="Select";
+        
+    }//GEN-LAST:event_selectActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -585,14 +740,36 @@ public class Canvas extends javax.swing.JFrame {
     }//GEN-LAST:event_canvas1MouseMoved
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton2ActionPerformed
+      //System.out.println("undo");
         p.undo();
-        canvas1.getGraphics().clearRect(0, 0, canvas1.getWidth(), canvas1.getHeight());
+     canvas1.getGraphics().clearRect(0, 0, canvas1.getWidth(), canvas1.getHeight());
         p.draw(canvas1.getGraphics());
     }//GEN-LAST:event_jToggleButton2ActionPerformed
 
     private void jToggleButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton3ActionPerformed
-        p.redo();
+         p.redo();
+        canvas1.getGraphics().clearRect(0, 0, canvas1.getWidth(), canvas1.getHeight());
+       
+        p.draw(canvas1.getGraphics());
+        
     }//GEN-LAST:event_jToggleButton3ActionPerformed
+
+    private void resizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resizeActionPerformed
+      state = "Resize";
+    }//GEN-LAST:event_resizeActionPerformed
+
+    private void copyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_copyActionPerformed
+ state="Draw";        
+        state= "Copy";
+    }//GEN-LAST:event_copyActionPerformed
+
+    private void moveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moveActionPerformed
+        state = "Move";
+    }//GEN-LAST:event_moveActionPerformed
+
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+       state = "Delete";
+    }//GEN-LAST:event_deleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -638,11 +815,10 @@ public class Canvas extends javax.swing.JFrame {
     private javax.swing.JToggleButton Triangle;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
     private java.awt.Canvas canvas1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JToggleButton copy;
+    private javax.swing.JToggleButton delete;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -656,8 +832,10 @@ public class Canvas extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JToggleButton jToggleButton3;
+    private javax.swing.JToggleButton move;
+    private javax.swing.JToggleButton resize;
+    private javax.swing.JToggleButton select;
     // End of variables declaration//GEN-END:variables
 }

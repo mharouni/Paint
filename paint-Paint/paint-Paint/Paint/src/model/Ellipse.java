@@ -70,14 +70,14 @@ public class Ellipse extends AbstractShape{
 
     }
      
-     public void resize(Shape e, double x, double y) throws CloneNotSupportedException
+     public AbstractShape resize( double x, double y) throws CloneNotSupportedException
     {
         Factory f = new Factory();
-        Ellipse newEllipse = (Ellipse)e.clone();
+        Ellipse newEllipse = (Ellipse)this.clone();
         
         f.factoryProp(newEllipse, x, y);
         
-        Parser.getInstance().updateShape(e, newEllipse);
+        return newEllipse;
     }
     
     public void move(Shape e, Point p) throws CloneNotSupportedException
@@ -89,6 +89,7 @@ public class Ellipse extends AbstractShape{
     
     public void copy(Shape e,Point p) throws CloneNotSupportedException
     {
+        System.out.println("copy");
         Ellipse newT = (Ellipse)e.clone();
       //  Point p= new Point(newT.getPosition().x+10,newT.getPosition().y-10);
                 newT.setPosition(p);

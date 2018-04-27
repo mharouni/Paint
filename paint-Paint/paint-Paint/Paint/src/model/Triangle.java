@@ -59,14 +59,14 @@ public class Triangle extends AbstractShape {
 
     }
 
-    public void resize(Shape e, double x, double y) throws CloneNotSupportedException {
+    public AbstractShape resize(double x, double y) throws CloneNotSupportedException {
         Factory f = new Factory();
 
-        Triangle newT = (Triangle) e.clone();
+        Triangle newT = (Triangle) this.clone();
 
         f.factoryProp(newT, x, y);
 
-        Parser.getInstance().updateShape(e, newT);
+        return newT;
 
     }
 

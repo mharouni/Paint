@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shapes>
+    <shape FillColor="452984831" LineColor="-1118482" Position="141,138"
+        name="Circle" radius="139.0"/>
+    <shape FillColor="452984831" LineColor="-1118482" Position="490,104"
+        name="Circle" radius="217.0"/>
+    <shape FillColor="452984831" LineColor="-1118482" Position="327,96"
+        name="Circle" radius="39.0"/>
+</shapes>

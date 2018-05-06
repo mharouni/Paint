@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/MaramH/Desktop/FinalPaint/src/view/Canvas.java</file>
+            <file>file:/C:/Users/MaramH/Desktop/FinalPaint/src/model/AbstractShape.java</file>
+            <file>file:/C:/Users/MaramH/Desktop/FinalPaint/src/Paint.java</file>
+            <file>file:/C:/Users/MaramH/Desktop/FinalPaint/src/model/Circle.java</file>
+            <file>file:/C:/Users/MaramH/Desktop/FinalPaint/src/controller/Memento.java</file>
+            <file>file:/C:/Users/MaramH/Desktop/FinalPaint/src/model/Ellipse.java</file>
+            <file>file:/C:/Users/MaramH/Desktop/FinalPaint/src/controller/Parser.java</file>
+            <file>file:/C:/Users/MaramH/Desktop/FinalPaint/src/controller/Factory.java</file>
+            <file>file:/C:/Users/MaramH/Desktop/FinalPaint/src/Database/JSON.java</file>
+        </group>
+    </open-files>
+</project-private>
